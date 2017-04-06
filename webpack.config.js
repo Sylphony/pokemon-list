@@ -3,6 +3,8 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 
+const env = (process.env.NODE_ENV) ? process.env.NODE_ENV : "development";
+
 const srcPath = path.join(__dirname, "src");
 
 module.exports = () => {
@@ -58,6 +60,7 @@ module.exports = () => {
                     test: /\.scss$/,
                     exclude: /node_modules/,
                     use: ExtractTextPlugin.extract({
+                        fallback: "style-loader",
                         use: [
                             { 
                                 loader: "css-loader",
@@ -70,6 +73,13 @@ module.exports = () => {
         },
 
         plugins: [
+            // Set the environment variables
+            new webpack.DefinePlugin({
+                "process.env": {
+                    "NODE_ENV": JSON.stringify(env)
+                }
+            }),
+
             // Group files into common chunks
             new webpack.optimize.CommonsChunkPlugin({
                 name: ["vendor"],
@@ -90,7 +100,8 @@ module.exports = () => {
             new ExtractTextPlugin({
                 filename: (getPath) => {
                     return getPath("[name].css").replace("app/app.build", "assets/css/index");
-                }
+                },
+                disable: (env === "development")
             }),
 
             // For HMR
