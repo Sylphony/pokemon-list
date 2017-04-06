@@ -4,7 +4,8 @@
   "description": "A page that lists all the Pokemon, using the PokeApi.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev-server": "./node_modules/.bin/webpack-dev-server"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,9 @@
   "devDependencies": {
     "eslint": "^3.19.0",
     "eslint-plugin-react": "^6.10.3",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "html-webpack-plugin": "^2.28.0",
+    "sass-loader": "^6.0.3",
     "webpack": "^2.3.3",
     "webpack-dev-server": "^2.4.2"
   }
