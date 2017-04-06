@@ -19,9 +19,12 @@
   "dependencies": {
     "immutable": "^3.8.1",
     "react": "^15.4.2",
+    "react-dom": "^15.4.2",
     "unfetch": "^2.1.2"
   },
   "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-plugin-react": "^6.10.3",
     "webpack": "^2.3.3",
     "webpack-dev-server": "^2.4.2"
   }
