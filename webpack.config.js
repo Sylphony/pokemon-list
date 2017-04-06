@@ -18,12 +18,11 @@ module.exports = () => {
             ],
 
             "app/app.build": [
-                "./app/app"
+                "./app/app",
+                "./assets/scss/index.scss"
             ],
 
-            // "assets/css/app.css": [
-            //     "assets/scss/index.scss"
-            // ]
+
         },
 
         output: {
@@ -56,13 +55,16 @@ module.exports = () => {
 
                 // For SCSS files
                 {
-                    test: /\.scss?$/,
+                    test: /\.scss$/,
                     exclude: /node_modules/,
-                    use: [
-                        "style-loader",
-                        "css-loader",
-                        "sass-loader?sourceMap"
-                    ]
+                    use: ExtractTextPlugin.extract({
+                        use: [
+                            { 
+                                loader: "css-loader",
+                            },
+                            "sass-loader?sourceMap"
+                        ],
+                    })
                 }
             ]
         },
@@ -78,11 +80,17 @@ module.exports = () => {
             new HtmlWebpackPlugin({
                 template: path.join(srcPath, "index-tpl.html"),
                 filename: "index.html",
-                hash: true,
                 chunks: [
                     "vendor",
                     "app/app.build"
                 ]
+            }),
+
+            // Extract Sass to CSS file
+            new ExtractTextPlugin({
+                filename: (getPath) => {
+                    return getPath("[name].css").replace("app/app.build", "assets/css/index");
+                }
             }),
 
             // For HMR
