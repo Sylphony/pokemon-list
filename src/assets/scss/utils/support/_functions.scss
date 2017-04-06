@@ -1,0 +1,19 @@
+// Get media query
+@function mq($size) {
+    @return map-get($mq, $size);
+}
+
+// Fetch nested keys
+// @param {Map} $map - The root map
+// @param {Arglist} $keys - Keys to fetch, in depth order
+// @return {*}
+// Taken from: https://www.sitepoint.com/extra-map-functions-sass/
+@function map-deep-get($map, $keys...) {
+  @each $key in $keys {
+    // If there is a nested map, look through the new map
+    // Otherwise, get the key from the original root map
+    $map: map-get($map, $key);
+  }
+
+  @return $map;
+}

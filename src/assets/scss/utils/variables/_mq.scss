@@ -1,0 +1,18 @@
+$breakpoints: (
+    small: 576px,
+    medium: 768px,
+    large: 992px,
+    xlarge: 1200px
+);
+
+$mq: (
+    max-xsmall: "(max-width: " map-get($breakpoints, (small))-1 ")",
+    min-small:  "(min-width: " map-get($breakpoints, (small)) ")",
+    max-small:  "(max-width: " map-get($breakpoints, (medium))-1 ")",
+    min-medium: "(min-width: " map-get($breakpoints, (medium)) ")",
+    max-medium: "(max-width: " map-get($breakpoints, (large))-1 ")",
+    min-large:  "(min-width: " map-get($breakpoints, (large)) ")",
+    max-large:  "(max-width: " map-get($breakpoints, (xlarge))-1 ")",
+    min-xlarge: "(min-width: " map-get($breakpoints, (xlarge)) ")",
+    ie: "(-ms-high-contrast: none), (-ms-high-contrast: active)"
+);

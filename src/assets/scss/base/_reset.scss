@@ -1,0 +1,7 @@
+html {
+    font-size:map-deep-get($fonts, "size", "base");
+}
+
+body {
+    background-color:map-get($colors, gray);
+}

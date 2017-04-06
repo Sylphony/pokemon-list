@@ -1,0 +1,20 @@
+@import "./../../vendors/sass-import-once/sass-import-once";
+@import "mixins";
+
+@include exports("extends") {
+	%center-hv {
+		@include center-hv;
+	}
+
+	%center-h {
+		@include center-h;
+	}
+
+	%center-v {
+		@include center-v;
+	}
+
+	%abs-full-screen {
+		@include abs-full-screen;
+	}
+}
