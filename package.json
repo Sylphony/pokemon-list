@@ -1,0 +1,28 @@
+{
+  "name": "pokemon-list",
+  "version": "0.1.0",
+  "description": "A page that lists all the Pokemon, using the PokeApi.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sylphony/pokemon-list.git"
+  },
+  "author": "Sylphony (https://github.com/Sylphony)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Sylphony/pokemon-list/issues"
+  },
+  "homepage": "https://github.com/Sylphony/pokemon-list#readme",
+  "dependencies": {
+    "immutable": "^3.8.1",
+    "react": "^15.4.2",
+    "unfetch": "^2.1.2"
+  },
+  "devDependencies": {
+    "webpack": "^2.3.3",
+    "webpack-dev-server": "^2.4.2"
+  }
+}

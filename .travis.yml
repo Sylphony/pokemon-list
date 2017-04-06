@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+    - "6"
+before_script:
+    - yarn install
+notifications:
+    email: false
+script:
+    - npm run eslint
+    - npm run test:single-run
+cache:
+    yarn:
+        - yarn
+    directories:
+        - node_modules
