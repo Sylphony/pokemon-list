@@ -18,12 +18,12 @@ module.exports = () => {
             ],
 
             "app/app.build": [
-                "app"
+                "./app/app"
             ],
 
-            "assets/css/app.css": [
-                "assets/scss/index.scss"
-            ]
+            // "assets/css/app.css": [
+            //     "assets/scss/index.scss"
+            // ]
         },
 
         output: {
