@@ -1,0 +1,28 @@
+.card {
+    margin-bottom:30px;
+
+    border-radius:0;
+
+    &-img {
+        max-width:100%;
+        margin:0 auto;
+    }
+
+    &-type {
+        display:flex;
+
+        &__info {
+            flex-basis:50%;
+
+            padding:15px 0;
+
+            color:map-get($colors, white);
+
+            @each $type, $color in $colors-type {
+                &--#{$type} {
+                    background-color:$color;
+                }
+            }
+        }
+    }
+}
