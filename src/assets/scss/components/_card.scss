@@ -1,20 +1,46 @@
+// Each Pokemon info card
 .card {
+    position:relative;
+
     margin-bottom:30px;
 
     border-radius:0;
 
+    // Pokemon's ID
+    &-id {
+        position:absolute;
+        top:5px;
+        left:5px;
+
+        width:30px;
+        height:30px;
+
+        color:map-get($colors, white);
+        line-height:30px;
+
+        background-color:darken(map-get($colors, gray), 30%);
+        border-radius:50%;
+    }
+
+    // Pokemon's name
+    &-title {
+        font-size:1.25rem;
+    }
+
+    // Pokemon's sprite
     &-img {
         max-width:100%;
         margin:0 auto;
     }
 
+    // Pokemon's types
     &-type {
         display:flex;
 
         &__info {
-            flex-basis:50%;
+            flex-basis:100%;
 
-            padding:15px 0;
+            padding:10px 0;
 
             color:map-get($colors, white);
 
