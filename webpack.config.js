@@ -16,7 +16,8 @@ module.exports = () => {
                 "react", 
                 "react-dom",
                 "unfetch",
-                "immutable"
+                "immutable",
+                "classnames"
             ],
 
             "app/app.build": [
