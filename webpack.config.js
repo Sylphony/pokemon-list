@@ -13,9 +13,9 @@ module.exports = () => {
 
         entry: {
             "vendor": [
-                "axios", 
+                "react", 
                 "react-dom",
-                "unfetch",
+                "axios",
                 "immutable",
                 "classnames"
             ],
