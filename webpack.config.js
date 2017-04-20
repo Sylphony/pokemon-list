@@ -13,7 +13,7 @@ module.exports = () => {
 
         entry: {
             "vendor": [
-                "react", 
+                "axios", 
                 "react-dom",
                 "unfetch",
                 "immutable",
@@ -24,8 +24,6 @@ module.exports = () => {
                 "./app/app",
                 "./assets/scss/index.scss"
             ],
-
-
         },
 
         output: {
@@ -50,6 +48,9 @@ module.exports = () => {
                                 presets: [
                                     "react",
                                     ["es2015", { modules: false } ]
+                                ],
+                                plugins: [
+                                    "transform-object-rest-spread"
                                 ]
                             }
                         }
