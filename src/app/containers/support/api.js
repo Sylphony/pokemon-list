@@ -10,7 +10,7 @@ const getPkmn = (name, url) => {
         return axios.get(url);
     }
 
-    return axios.get(`http://pokeapi.co/api/v2/pokemon/${name}/`);
+    return axios.get(`//pokeapi.co/api/v2/pokemon/${name}/`);
 };
 
 /**
@@ -20,7 +20,7 @@ const getPkmn = (name, url) => {
  * @return {Promise}: The response.
  */
 const getPkmnList = (offset = 0, limit = 18) => {
-    return axios.get(`http://pokeapi.co/api/v2/pokemon/?limit=${limit}&offset=${offset}`);
+    return axios.get(`//pokeapi.co/api/v2/pokemon/?limit=${limit}&offset=${offset}`);
 };
 
 export {
