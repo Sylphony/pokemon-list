@@ -1,0 +1,12 @@
+// Loading icon
+.loading {
+    display:block;
+
+    margin-bottom:20px;
+
+    text-align:center;
+
+    &--hide {
+        display:none;
+    }
+}

@@ -3,7 +3,7 @@ import Immutable from "immutable";
 import axios from "axios";
 import { getPkmn, getPkmnList } from "./support/api";
 import { storeCachePkmn, getCachePkmn } from "./support/cache";
-import { Button, Card } from "./../components/";
+import { Button, Card, Loading } from "./../components/";
 
 class PkmnList extends Component {
     constructor() {
@@ -12,7 +12,8 @@ class PkmnList extends Component {
         this.state = {
             offset: 0,
             limit: 18,
-            pkmnInfo: []
+            pkmnInfo: [],
+            loading: false
         };
     }
 
@@ -39,15 +40,23 @@ class PkmnList extends Component {
                 { allCards }
 
                 <div className="col-md-12">
-                    <Button name="Show more" classes="btn--showMore" click={ this.getPkmn.bind(this) } />
+                    <Loading hide={ !this.state.loading } />
+                    <Button name="Show more" classes={ ["btn--showMore", { "btn--hide": this.state.loading }] } click={ this.getPkmn.bind(this) } />
                 </div>
             </div>
         );
     }
 
 
+    /**
+     * Get the Pokemon list (in increments).
+     */
     getPkmn() {
         const { offset } = this.state;
+
+        this.setState({
+            loading: true
+        });
 
         // Get the Pokemon list
         getPkmnList(offset)
@@ -88,7 +97,8 @@ class PkmnList extends Component {
                 // With the entire list, set the state to show in the page view
                 this.setState({
                     pkmnInfo: this.state.pkmnInfo.concat(cachePkmnList),
-                    offSet: this.state.offset += this.state.limit
+                    offSet: this.state.offset += this.state.limit,
+                    loading: false
                 });
             });
     }

@@ -1,3 +1,4 @@
+// Button component
 .btn {
     // "Show More" button
     &--showMore {
@@ -7,5 +8,9 @@
         max-width:300px;
         margin:0 auto;
         padding:10px;
+    }
+
+    &--hide {
+        display:none;
     }
 }
