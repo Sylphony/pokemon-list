@@ -11,13 +11,20 @@
     }
 
     &__github {
-        &-ribbon {
+        &-icon {
             position:fixed;
             top:0;
             right:0;
             z-index:5;
 
             border:0;
+            
+            fill:#64CEAA; 
+            color:#fff;
+
+            &:hover {
+                fill:darken(#64CEAA, 20%);
+            }
         }
     }
 }
