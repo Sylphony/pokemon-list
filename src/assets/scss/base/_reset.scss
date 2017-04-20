@@ -5,3 +5,7 @@ html {
 body {
     background-color:map-get($colors, gray);
 }
+
+.btn {
+    border-radius:0;
+}

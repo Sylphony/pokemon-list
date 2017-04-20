@@ -7,7 +7,7 @@
     border-radius:0;
 
     // Pokemon's ID
-    &-id {
+    &__id {
         position:absolute;
         top:5px;
         left:5px;
@@ -23,21 +23,21 @@
     }
 
     // Pokemon's name
-    &-title {
+    &__title {
         font-size:1.25rem;
     }
 
     // Pokemon's sprite
-    &-img {
+    &__img {
         max-width:100%;
         margin:0 auto;
     }
 
     // Pokemon's types
-    &-type {
+    &__type {
         display:flex;
 
-        &__info {
+        &-info {
             flex-basis:100%;
 
             padding:10px 0;

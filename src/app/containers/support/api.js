@@ -15,11 +15,11 @@ const getPkmn = (name, url) => {
 
 /**
  * Get Pokemon list from API.
- * @param {num} [limit = 5]: Number of results.
  * @param {num} [offset = 0]: Where to start the fetch.
+ * @param {num} [limit = 18]: Number of results.
  * @return {Promise}: The response.
  */
-const getPkmnList = (limit = 18, offset = 0) => {
+const getPkmnList = (offset = 0, limit = 18) => {
     return axios.get(`http://pokeapi.co/api/v2/pokemon/?limit=${limit}&offset=${offset}`);
 };
 

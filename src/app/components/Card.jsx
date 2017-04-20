@@ -9,8 +9,8 @@ const CardTypeInfo = (props) => {
     const { type } = props;
 
     const theClassNames = classNames(
-        "card-type__info",
-        ["card-type__info--" + type] : type
+        "card__type-info",
+        ["card__type-info--" + type] : type
     );
 
     return (
@@ -32,10 +32,10 @@ const Card = (props) => {
 
     return (
         <div className="card text-center">
-            <span className={ "card-id card-id--" + types[0] }>{ id }</span>
-            <img className="card-img" src={ img } alt={ (name || "No") + " sprite" } />
-            <h2 className="card-title">{ capitalize(name) }</h2>
-            <div className="card-type">
+            <span className={ "card__id card__id--" + types[0] }>{ id }</span>
+            <img className="card__img" src={ img } alt={ (name || "No") + " sprite" } />
+            <h2 className="card__title">{ capitalize(name) }</h2>
+            <div className="card__type">
                 { pkmnTypes }
             </div>
         </div>
