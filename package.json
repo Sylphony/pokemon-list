@@ -4,7 +4,7 @@
   "description": "A page that lists all the Pokemon, using the PokeApi.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "eslint": "./node_modules/.bin/eslint src/app/**/*",
     "dev-server": "./node_modules/.bin/webpack-dev-server"
   },
   "repository": {
