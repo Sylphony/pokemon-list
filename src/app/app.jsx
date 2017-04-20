@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import { PkmnList } from "./containers/";
 

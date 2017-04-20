@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from "react";
+import React, { PropTypes } from "react";
 import classNames from "classnames";
 
 /**
@@ -16,6 +16,12 @@ const Button = (props) => {
     return (
         <button type="button" className={ theClassNames } onClick={ click }>{ name }</button>
     );
+};
+
+Button.propTypes = {
+    name: PropTypes.string.isRequired,
+    classes: PropTypes.any,
+    click: PropTypes.func.isRequired
 };
 
 export default Button;

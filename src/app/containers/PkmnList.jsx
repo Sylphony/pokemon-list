@@ -1,5 +1,4 @@
-import React, { Component, PropTypes } from "react";
-import Immutable from "immutable";
+import React, { Component } from "react";
 import axios from "axios";
 import { getPkmn, getPkmnList } from "./support/api";
 import { storeCachePkmn, getCachePkmn } from "./support/cache";
@@ -97,7 +96,7 @@ class PkmnList extends Component {
                 // With the entire list, set the state to show in the page view
                 this.setState({
                     pkmnInfo: this.state.pkmnInfo.concat(cachePkmnList),
-                    offSet: this.state.offset += this.state.limit,
+                    offset: this.state.offset + this.state.limit,
                     loading: false
                 });
             });

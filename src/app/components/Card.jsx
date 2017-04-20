@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from "react";
+import React, { PropTypes } from "react";
 import classNames from "classnames";
 import { capitalize } from "./../utils/";
 
@@ -10,13 +10,18 @@ const CardTypeInfo = (props) => {
 
     const theClassNames = classNames(
         "card__type-info",
-        ["card__type-info--" + type] : type
+        "card__type-info--" + type
     );
 
     return (
         <span className={ theClassNames }>{ capitalize(type) }</span>
     );
 };
+
+CardTypeInfo.propTypes = {
+    type: PropTypes.string.isRequired
+};
+
 
 /**
  * The Card component.
@@ -40,6 +45,13 @@ const Card = (props) => {
             </div>
         </div>
     );
+};
+
+Card.propTypes = {
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    types: PropTypes.array.isRequired,
+    img: PropTypes.string.isRequired
 };
 
 export default Card;  
