@@ -16,7 +16,7 @@ class PkmnList extends Component {
 
     componentDidMount() {
         // Get the Pokemon list
-        getPkmnList(6)
+        getPkmnList()
             .then(resp => {
                 const pkmnList = resp.data.results;
 
@@ -25,32 +25,41 @@ class PkmnList extends Component {
                     return getCachePkmn(pkmn.name);
                 });
 
-                axios
-                    .all(promises)
-                    .then(cachePkmnList => {
-                        // For each Pokemon not in the cache (i.e. response value is null), fetch from the API.
-                        // Then extract the data to the array
-                        cachePkmnList = cachePkmnList.map((pkmn, index) => {
-                            if (!pkmn) {
-                                return getPkmn(pkmnList[index].name).then(resp => resp.data);
-                            }
+                return axios
+                        .all(promises)
+                        .then(cachePkmnList => {
+                            // For each Pokemon not in the cache (i.e. response value is null), fetch from the API.
+                            // Then extract the data to the array
+                            cachePkmnList = cachePkmnList.map((pkmn, index) => {
+                                if (!pkmn) {
+                                    return getPkmn(pkmnList[index].name).then(resp => resp.data);
+                                }
 
-                            return pkmn;
-                        });
+                                return pkmn;
+                            });
 
-                        // Wait until all the Pokemon have their data first
-                        return axios.all(cachePkmnList);
-                    })
-                    .then(cachePkmnList => {
-                        // Cache each Pokemon's data into storage
-                        cachePkmnList.forEach(pkmnData => {
-                            storeCachePkmn(pkmnData.name, pkmnData);
+                            // Wait until all the Pokemon have their data first
+                            return axios.all(cachePkmnList);
+                        })
+                        .then(cachePkmnList => {
+                            // Cache each Pokemon's data into storage
+                            cachePkmnList.forEach(pkmnData => {
+                                storeCachePkmn(pkmnData.name, pkmnData);
+                            });
+
+                            return cachePkmnList;
                         });
-                    });
+            })
+            .then(cachePkmnList => {
+                // With the entire list, set the state to show in the page view
+                this.setState({
+                    pkmnInfo: cachePkmnList
+                });
             });
     }
 
     render() {
+        // Set up the cards
         const allCards = this.state.pkmnInfo.map(pkmn => {
             const pkmnTypes = pkmn.types.map(info => {
                 return info.type.name;
@@ -69,15 +78,6 @@ class PkmnList extends Component {
             </div>
         );
     }
-
-    /**
-     * Fetches the Pokemon's data.
-     * @param {str} name: The Pokemon's name.
-     */
-    cachePkmn(name) {
-        return fetch("http://pokeapi.co/api/v2/pokemon/" + name);
-    }
-
 }
 
 export default PkmnList;
