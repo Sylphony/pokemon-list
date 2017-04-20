@@ -1,9 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { PkmnList } from "./containers/";
+import { Header, PkmnList } from "./containers/";
 
 const App = () => (
     <div className="container">
+        <Header />
         <PkmnList />
     </div>
 );
