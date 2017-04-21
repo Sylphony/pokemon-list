@@ -23,9 +23,7 @@ class PkmnList extends Component {
     render() {
         // Set up the cards
         const allCards = this.state.pkmnInfo.map(pkmn => {
-            const pkmnTypes = pkmn.types.map(info => {
-                return info.type.name;
-            }).reverse();
+            const pkmnTypes = pkmn.types.map(info => info.type.name).reverse();
 
             return (
                 <div className="col-md-4" key={ pkmn.name }>
@@ -63,9 +61,7 @@ class PkmnList extends Component {
                 const pkmnList = resp.data.results;
 
                 // With the Pokemon list, fetch from the cache
-                const promises = pkmnList.map(pkmn => {
-                    return getCachePkmn(pkmn.name);
-                });
+                const promises = pkmnList.map(pkmn => getCachePkmn(pkmn.name));
 
                 return axios.all([axios.all(promises), pkmnList]);
             })
@@ -81,9 +77,7 @@ class PkmnList extends Component {
             })
             .then(cachePkmnList => {
                 // Cache each Pokemon's data into storage
-                cachePkmnList.forEach(pkmnData => {
-                    storeCachePkmn(pkmnData.name, pkmnData);
-                });
+                cachePkmnList.forEach(pkmnData => storeCachePkmn(pkmnData.name, pkmnData));
 
                 return cachePkmnList;
             })
