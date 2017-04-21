@@ -19,7 +19,7 @@ const getPkmn = (name, url) => {
  * @param {num} [limit = 18]: Number of results.
  * @return {Promise}: The response.
  */
-const getPkmnList = (offset = 0, limit = 18) => {
+const getPkmnList = (offset = 0, limit = 9) => {
     return axios.get(`//pokeapi.co/api/v2/pokemon/?limit=${limit}&offset=${offset}`);
 };
 

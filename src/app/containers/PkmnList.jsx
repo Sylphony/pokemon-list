@@ -10,7 +10,7 @@ class PkmnList extends Component {
 
         this.state = {
             offset: 0,
-            limit: 18,
+            limit: 9,
             pkmnInfo: [],
             loading: false
         };
@@ -51,14 +51,14 @@ class PkmnList extends Component {
      * Get the Pokemon list (in increments).
      */
     getPkmn() {
-        const { offset } = this.state;
+        const { offset, limit } = this.state;
 
         this.setState({
             loading: true
         });
 
         // Get the Pokemon list
-        getPkmnList(offset)
+        getPkmnList(offset, limit)
             .then(resp => {
                 const pkmnList = resp.data.results;
 
@@ -67,30 +67,25 @@ class PkmnList extends Component {
                     return getCachePkmn(pkmn.name);
                 });
 
-                return axios
-                        .all(promises)
-                        .then(cachePkmnList => {
-                            // For each Pokemon not in the cache (i.e. response value is null), fetch from the API.
-                            // Then extract the data to the array
-                            cachePkmnList = cachePkmnList.map((pkmn, index) => {
-                                if (!pkmn) {
-                                    return getPkmn(pkmnList[index].name).then(resp => resp.data);
-                                }
+                return axios.all([axios.all(promises), pkmnList]);
+            })
+            .then(([cachePkmnList, pkmnList]) => {
+                // For each Pokemon not in the cache (i.e. response value is null), fetch from the API.
+                // Then extract the data to the array
+                cachePkmnList = cachePkmnList.map((pkmn, index) => {
+                    return (!pkmn) ? getPkmn(pkmnList[index].name).then(resp => resp.data) : pkmn;
+                });
 
-                                return pkmn;
-                            });
+                // Wait until all the Pokemon have their data first
+                return axios.all(cachePkmnList);
+            })
+            .then(cachePkmnList => {
+                // Cache each Pokemon's data into storage
+                cachePkmnList.forEach(pkmnData => {
+                    storeCachePkmn(pkmnData.name, pkmnData);
+                });
 
-                            // Wait until all the Pokemon have their data first
-                            return axios.all(cachePkmnList);
-                        })
-                        .then(cachePkmnList => {
-                            // Cache each Pokemon's data into storage
-                            cachePkmnList.forEach(pkmnData => {
-                                storeCachePkmn(pkmnData.name, pkmnData);
-                            });
-
-                            return cachePkmnList;
-                        });
+                return cachePkmnList;
             })
             .then(cachePkmnList => {
                 // With the entire list, set the state to show in the page view
