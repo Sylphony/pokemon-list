@@ -83,11 +83,11 @@ class PkmnList extends Component {
             })
             .then(cachePkmnList => {
                 // With the entire list, set the state to show in the page view
-                this.setState({
-                    pkmnInfo: this.state.pkmnInfo.concat(cachePkmnList),
-                    offset: this.state.offset + this.state.limit,
+                this.setState(prevState => ({
+                    pkmnInfo: prevState.pkmnInfo.concat(cachePkmnList),
+                    offset: prevState.offset + prevState.limit,
                     loading: false
-                });
+                }));
             });
     }
 }
